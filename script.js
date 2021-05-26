@@ -49,6 +49,10 @@ class Employee {
             `"latestOut": "${this.latestOut}", "status": ${this.status}, "rate": "${this.rate}"}`        
     }
 
+    delete = () => {
+        localStorage.removeItem(`employee-${this.id}`);
+    }
+
 }
 
 function incrementID() {
@@ -56,13 +60,17 @@ function incrementID() {
 }
 
 function addEmployee(name, rate) {
-    const employee = new Employee(name, rate);
-    localStorage[`employee-${localStorage.id}`] = 
-        `{"id": "${localStorage.id}", "name": "${employee.name}", "latestIn": "${employee.latestIn}", ` + 
-        `"latestOut": "${employee.latestOut}", "status": false, "rate": "${employee.rate}"}`
-    employee.id = localStorage.id;
-    incrementID();
-    return employee;
+    if (name === undefined || rate === undefined) {
+        alert('You must provide both a name and rate of pay (USD / hour)');
+    } else {
+        const employee = new Employee(name, rate);
+        localStorage[`employee-${localStorage.id}`] = 
+            `{"id": "${localStorage.id}", "name": "${employee.name}", "latestIn": "${employee.latestIn}", ` + 
+            `"latestOut": "${employee.latestOut}", "status": false, "rate": "${employee.rate}"}`
+        employee.id = localStorage.id;
+        incrementID();
+        return employee;
+    }
 }
 
 function getOneEmployee(id) {

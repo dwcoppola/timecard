@@ -65,7 +65,7 @@ function addEmployee(name, rate) {
     return employee;
 }
 
-function getEmployee(id) {
+function getOneEmployee(id) {
     let data = JSON.parse(localStorage[`employee-${id}`]);
     let employee = new Employee(data.name, data.rate);
     employee.id = data.id;
@@ -74,4 +74,13 @@ function getEmployee(id) {
     employee.status = data.status;
     employee.rate = data.rate;
     return employee;
+}
+
+function getAllEmployees() {
+    let output = [];
+    for (let i = 0; i < localStorage.id; i++) {
+        let employee = getEmployee(i);
+        output.push(employee);
+    }
+    return output;
 }

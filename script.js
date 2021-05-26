@@ -40,7 +40,7 @@ class Employee {
         } else if (this.latestOut === '') {
             alert('error')
         }
-        return ((Date.parse(this.latestOut) - Date.parse(this.latestIn)) / 60000 * (17 / 60)).toFixed(2);
+        return ((Date.parse(this.latestOut) - Date.parse(this.latestIn)) / 60000 * (Number(this.rate) / 60)).toFixed(2);
     }
 
     save = () => {
